@@ -33,7 +33,11 @@ main {
     padding: 20px;
 }
 
-h1, h2 {
+h1 {
+    color: #ffffff;
+}
+
+h2 {
     color: #0077cc;
 }
 
