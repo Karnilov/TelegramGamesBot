@@ -1,61 +1,58 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Telegram Bot Messenger</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        input, button {
-            padding: 10px;
-            margin: 5px;
-        }
-    </style>
-</head>
-<body>
-    <h1>Отправка сообщений в Telegram Bot</h1>
-    <input type="text" id="message" placeholder="Введите сообщение" />
-    <button onclick="sendMessage()">Отправить сообщение</button>
-    <p id="response"></p>
+   <!DOCTYPE html>
+   <html lang="ru">
+   <head>
+       <meta charset="UTF-8">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <title>@KDTelegramGamesBot</title>
+       <link rel="stylesheet" href="styles.css">
+   </head>
+   <body>
+       <header>
+           <h1>Добро пожаловать в Telegram games</h1>
+           <nav>
+               <ul>
+                   <li><a href="#about">О боте</a></li>
+                   <li><a>|</a></li>
+                   <li><a href="#games">Игры</a></li>
+                   <li><a>|</a></li>
+                   <li><a href="#commands">Команды</a></li>
+                   <li><a>|</a></li>
+                   <li><a href="#faq">FAQ</a></li>
+                   <li><a>|</a></li>
+                   <li><a href="#contact">Контакты</a></li>
+               </ul>
+           </nav>
+       </header>
+       <main>
+           <section id="about">
+               <h2>О боте</h2>
+               <p>Ваш @KDTelegramGamesBot поможет вам развлечься и поиграть в различные игры прямо в Telegram!</p>
+           </section>
+           <section id="games">
+               <h2>Игры</h2>
+               <p>Мафия(в разроботке)</p>
+           </section>
+           <section id="commands">
+               <h2>Команды</h2>
+               <p>/start - начать</p>
+               <p>/setCivilians - установить чат мирных жителей </p>
+               <p>/setMafia0 - установить чат мафии</p>
+           </section>
+           <section id="faq">
+               <h2>Часто задаваемые вопросы</h2>
+               <p>Здесь пока нечего нет.</p>
+           </section>
+           <section id="contact">
+               <h2>Контактная информация</h2>
+               <p>Контактные данные создателя:</p>
+               <p>Telegram:@Russian_goose</p>
+               <p>Mail:interplanetaryhackers@internet.ru</p>
+           </section>
+       </main>
+       <footer>
+           <p>© 2023 @KDTelegramGamesBot. Все права защищены.</p>
+       </footer>
+   </body>
+   </html>
 
-    <script>
-        function getChatId() {
-            const params = new URLSearchParams(window.location.search);
-            return params.get('chat_id'); // Получаем chat_id из параметров URL
-        }
-
-        function sendMessage() {
-            const message = document.getElementById('message').value;
-            const token = '6992850608:AAGDwwCvf3SVvuwO1op3BOI1g7ZlJAuRsGE'; // Замените на ваш токен
-            const chatId = getChatId(); // Получаем chat_id из URL
-
-            if (!chatId) {
-                document.getElementById('response').innerText = 'Пожалуйста, укажите chat_id в адресной строке.';
-                return;
-            }
-
-            fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    chat_id: chatId,
-                    text: message
-                }),
-            })
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById('response').innerText = data.ok ? 'Сообщение отправлено!' : 'Ошибка при отправке сообщения.';
-            })
-            .catch((error) => {
-                console.error('Ошибка:', error);
-                document.getElementById('response').innerText = 'Ошибка при отправке сообщения.';
-            });
-        }
-    </script>
-</body>
-</html>
+   
