@@ -1,11 +1,243 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="0;url=http://inteplanetaryhack.ddns.net/bot/">
-    <title>Перенаправление</title>
+  <meta charset="UTF-8">
+  <title>Тест по истории</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #0b2e13;
+      color: #d4edda;
+    }
+
+    h1, h2 {
+      color: #c3e6cb;
+    }
+
+    .test-section {
+      display: none;
+      margin-top: 20px;
+    }
+
+    .test-section.active {
+      display: block;
+    }
+
+    label {
+      display: block;
+      margin: 5px 0;
+      background-color: #155724;
+      padding: 8px;
+      border-radius: 5px;
+    }
+
+    .correct {
+      background-color: #218838 !important;
+    }
+
+    .incorrect {
+      background-color: #721c24 !important;
+    }
+
+    .result {
+      margin-top: 15px;
+      font-weight: bold;
+      color: #f8f9fa;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 6px;
+      margin-top: 4px;
+      margin-bottom: 10px;
+      background-color: #1c3b26;
+      color: #e9f5ec;
+      border: 1px solid #28a745;
+      border-radius: 4px;
+    }
+
+    input[type="text"].correct {
+      border: 2px solid #28a745;
+    }
+
+    input[type="text"].incorrect {
+      border: 2px solid #dc3545;
+    }
+
+    textarea {
+      width: 100%;
+      background-color: #1c3b26;
+      color: #e9f5ec;
+      border: 1px solid #28a745;
+      border-radius: 4px;
+      padding: 8px;
+      margin-bottom: 10px;
+    }
+
+    button {
+      margin-top: 10px;
+      padding: 10px 18px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #218838;
+    }
+  </style>
 </head>
 <body>
-    <p>Если перенаправление не произошло, <a href="https://example.com">кликните сюда</a>.</p>
+  <h1>Тест по истории Великой Отечественной войны</h1>
+
+  <button onclick="showTest('test1')">Открыть Тест 1</button>
+  <button onclick="showTest('test2')">Открыть Тест 2</button>
+
+  <div id="test1" class="test-section active">
+    <h2>Тест 1 (выбор из вариантов)</h2>
+    <form onsubmit="event.preventDefault(); checkTest1();">
+      <fieldset>
+        <legend>Какая битва разрушила планы Германии?</legend>
+        <label><input type="radio" name="q1" value="Курская"> Курская битва</label>
+        <label><input type="radio" name="q1" value="Москва"> Битва за Москву</label>
+        <label><input type="radio" name="q1" value="Берлин"> Битва за Берлин</label>
+      </fieldset>
+
+      <fieldset>
+        <legend>Сколько длилась Сталинградская битва?</legend>
+        <label><input type="radio" name="q2" value="150"> 150 дней</label>
+        <label><input type="radio" name="q2" value="200"> 200 дней</label>
+        <label><input type="radio" name="q2" value="100"> 100 дней</label>
+      </fieldset>
+
+      <fieldset>
+        <legend>Когда началась Великая Отечественная война?</legend>
+        <label><input type="radio" name="q3" value="2сент"> 2 сентября 1945</label>
+        <label><input type="radio" name="q3" value="22июня"> 22 июня 1941</label>
+        <label><input type="radio" name="q3" value="1сент"> 1 сентября 1939</label>
+      </fieldset>
+
+      <fieldset>
+        <legend>Операция «Тайфун» — это:</legend>
+        <label><input type="radio" name="q4" value="Ленинград"> Блокада Ленинграда</label>
+        <label><input type="radio" name="q4" value="Москва"> Наступление на Москву</label>
+        <label><input type="radio" name="q4" value="Киев"> Битва за Киев</label>
+      </fieldset>
+
+      <fieldset>
+        <legend>Выберите города — цели Вермахта:</legend>
+        <label><input type="checkbox" name="q5" value="Киев"> Киев</label>
+        <label><input type="checkbox" name="q5" value="Сталинград"> Сталинград</label>
+        <label><input type="checkbox" name="q5" value="Ленинград"> Ленинград</label>
+        <label><input type="checkbox" name="q5" value="Москва"> Москва</label>
+      </fieldset>
+
+      <button type="submit">Проверить</button>
+      <div class="result" id="result1"></div>
+    </form>
+  </div>
+
+  <div id="test2" class="test-section">
+    <h2>Тест 2 (ввод текста)</h2>
+    <form onsubmit="event.preventDefault(); checkTest2();">
+      <label>Какая битва разрушила планы Германии?
+        <input type="text" name="q1_text" />
+      </label>
+      <label>Сколько длилась Сталинградская битва?
+        <input type="text" name="q2_text" />
+      </label>
+      <label>Дата начала Великой Отечественной войны:
+        <input type="text" name="q3_text" />
+      </label>
+      <label>Операция «Тайфун» — что это?
+        <input type="text" name="q4_text" />
+      </label>
+      <label>3 цели армии Вермахта:
+        <input type="text" name="q5_text" placeholder="Москва, Киев, Ленинград" />
+      </label>
+      <label>Операции 1944 года:
+        <textarea name="q6_text"></textarea>
+      </label>
+      <label>Государства, захваченные до СССР:
+        <textarea name="q7_text"></textarea>
+      </label>
+      <label>Фронты в Берлинской битве:
+        <textarea name="q8_text"></textarea>
+      </label>
+      <button type="submit">Проверить</button>
+      <div class="result" id="result2"></div>
+    </form>
+  </div>
+
+  <script>
+    function showTest(id) {
+      document.querySelectorAll('.test-section').forEach(section => section.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
+
+    function checkTest1() {
+      const correct = {
+        q1: "Москва",
+        q2: "200",
+        q3: "22июня",
+        q4: "Москва"
+      };
+
+      let correctCount = 0;
+
+      for (let key in correct) {
+        const radios = document.querySelectorAll(`input[name="${key}"]`);
+        radios.forEach(r => {
+          const label = r.closest("label");
+          label.classList.remove("correct", "incorrect");
+          if (r.checked) {
+            if (r.value === correct[key]) {
+              label.classList.add("correct");
+              correctCount++;
+            } else {
+              label.classList.add("incorrect");
+            }
+          }
+        });
+      }
+
+      document.getElementById("result1").textContent = `Правильных ответов: ${correctCount} из 4.`;
+    }
+
+    function checkTest2() {
+      const correctAnswers = {
+        q1_text: "Битва за Москву",
+        q2_text: "200 дней",
+        q3_text: "22 июня 1941",
+        q4_text: "Наступление на Москву",
+        q5_text: "Москва, Киев, Ленинград",
+        q6_text: "Багратион, Ясско-Кишинёвская, Прибалтийская, Висло-Одерская",
+        q7_text: "Польша, Франция, Бельгия, Нидерланды, Дания, Норвегия, Югославия, Греция",
+        q8_text: "1-й Белорусский, 2-й Белорусский, 1-й Украинский"
+      };
+
+      let correctCount = 0;
+      let total = Object.keys(correctAnswers).length;
+
+      for (let key in correctAnswers) {
+        const input = document.querySelector(`[name="${key}"]`);
+        const user = input.value.trim().toLowerCase();
+        const correct = correctAnswers[key].toLowerCase();
+
+        input.classList.remove("correct", "incorrect");
+        if (user === correct) {
+          input.classList.add("correct");
+          correctCount++;
+        } else {
+          input.classList.add("incorrect");
+        }
+      }
+
+      document.getElementById("result2").textContent = `Правильных ответов: ${correctCount} из ${total}.`;
+    }
+  </script>
 </body>
 </html>
